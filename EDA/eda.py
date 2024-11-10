@@ -9,9 +9,8 @@ st.header("Exploratory Data Analysis")
 
 
 # Step 1: Load the penguins dataset
-penguins = sns.load_dataset("penguins")
+df = pd.read_csv("Merged_data")
 
-# Display the first 5 rows to understand the structure
 
 def summary(filtered_data):
 
@@ -26,19 +25,19 @@ def summary(filtered_data):
 def load_data():
     return sns.load_dataset("penguins").dropna()
 
-penguins = load_data()
+df = load_data()
 
 
 
 # Species selection
 species = st.multiselect(
     "Select Species",
-    options=penguins['species'].unique(),
-    default=penguins['species'].unique()
+    options=df['species'].unique(),
+    default=df['species'].unique()
 )
 
 # Filter data based on user selection
-filtered_data = penguins[penguins['species'].isin(species)]
+filtered_data = df[df['species'].isin(species)]
 summary(filtered_data)
 
 
