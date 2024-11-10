@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 st.header("Exploratory Data Analysis")
 
 
-# Step 1: Load the penguins dataset
+# Step 1: Load the dataset
 df = pd.read_csv("Merged_data")
 
 
