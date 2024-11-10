@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import sys
 import os
+from sklearn.model_selection import train_test_split
 
 # Get the absolute path of the `module1` directory
 eda_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../EDA"))
