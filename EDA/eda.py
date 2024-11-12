@@ -82,7 +82,7 @@ def summary(filtered_data):
     'num_interaction': 'Total interactions'
     }, inplace=True)
 
-    num_interaction= filtered_data['Total interactions'].copy()
+    filtered_data['num_interaction'] = filtered_data['Total interactions'].copy()
 
     # Seleccionar solo el promedio y el conteo de cada columna numérica
     summary_stats = filtered_data.describe().loc[['mean', 'count']]
