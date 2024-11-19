@@ -38,17 +38,18 @@ st.image(image, use_column_width=True)
 # Mostrar el texto formateado
 st.markdown(
     """
-    <h2 style='color: #4a4a4a;'>Important Facts</h2>
-    <p style='font-size: 1.1em; color: #6c757d;'>
+    <h2 style='text-align: left; color: #c0c0c0;'>Datos Relevantes</h2>
+    <p style='font-size: 1.1em; color: #b0b0b0;'>
         En este sentido, la revisión de la literatura permite analizar y reflexionar si la teoría y la investigación anterior sugiere una respuesta (aunque sea parcial) a la pregunta o las preguntas de investigación; o bien, si provee una orientación a seguir dentro del planteamiento del estudio (Lawrence y otros, citados por Hernández-Sampieri, 2014). 
     </p>
     """, unsafe_allow_html=True
 )
 
 
+
 # Crear el multiselect para seleccionar candidatos
 candidates = df['candidate_name'].unique()
-selected_candidates = st.multiselect('Select Candidates', candidates)
+selected_candidates = st.multiselect('Selecciona Candidatos', candidates)
 
 # Filtrar los datos según los candidatos seleccionados
 if selected_candidates:
@@ -90,16 +91,16 @@ for platform in platform_colors.keys():
 # Configuración adicional del gráfico
 fig.update_layout(
     title={
-        'text': 'Daily Activity on Each Platform',
+        'text': 'Actividad Diaria en Cada Plataforma',
         'x': 0.5,
         'y': 0.9,
         'xanchor': 'center',
         'yanchor': 'top'
     },
-    xaxis_title="Date",
-    yaxis_title="Number of Posts",
+    xaxis_title="Plataforma",
+    yaxis_title="Número de Publicaciones",
     template="plotly_white",
-    legend_title="Platform",
+    legend_title="Plataforma",
 )
 
 # Mostrar gráfico de líneas en Streamlit
