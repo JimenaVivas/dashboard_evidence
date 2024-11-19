@@ -15,6 +15,7 @@ from datetime import timedelta
 
 st.title('Cambios en el comportamiento de los usuarios')
 st.write("### Temas más recurrentes")
+st.write("Se observa a continuación el cambio de temas más recurrentes en la campaña y cómo cambio su frecuencia.")
 
 # Diccionario de sinónimos (para evitar palabras repetitivas)
 dictionary = {
@@ -90,6 +91,8 @@ st.pyplot(fig)
 
 ############### Users más activos y sus diferencias en actividad
 st.write("### Usuarios más relevantes")
+st.write("En las siguientes gráficas se puede comparar el cambio en número de interacciones los usuarios más relevantes en los últimos 10 dás. esto nos permite conocer si su actividad fue constante o si cambio en la última fase de la campaña.")
+
 # Contar interacciones por usuario
 user_interactions_recent = last_10_days_df.groupby('username')['num_interaction'].sum().reset_index()
 
