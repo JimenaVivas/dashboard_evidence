@@ -3,7 +3,7 @@ import streamlit as st
 # Páginas individuales
 intro = st.Page(
     "Background/intro.py",
-    title="Introduction",
+    title="Introducción",
     icon=":material/help:",
 )
 
@@ -28,13 +28,13 @@ interactive_charts = st.Page(
 
 ml = st.Page(
     "ml/ml_analysis.py",
-    title="Sentiment Analysis",
+    title="Análisis de Sentimientos",
     icon=":material/healing:",
 )
 
 about = st.Page(
     "Background/about.py",
-    title="About Us",
+    title="Sobre Nosotros",
     icon=":material/person_add:",
 )
 
@@ -52,10 +52,10 @@ about_pages = [about, cr]
 
 # Actualizamos el diccionario de navegación
 page_dict = {
-    "Introduction": intro_pages,
-    "Data Analysis": eda_pages,  # Sección combinada de Statistics e Interactive Charts
-    "Prediction": ml_pages,
-    "About Us": about_pages,
+    "Introducción": intro_pages,
+    "Análisis": eda_pages,  # Sección combinada de Statistics e Interactive Charts
+    "Predicción": ml_pages,
+    "Sobre Nosotros": about_pages,
 }
 
 # Interfaz principal
