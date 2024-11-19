@@ -10,28 +10,27 @@ import os
 # Cargar la imagen
 image = Image.open("images/mapa.webp")
 
-# Ruta del archivo ZIP dentro de tu repositorio
+# Ruta al archivo ZIP
 zip_file_path = "EDA/csv.zip"
 
-# Ruta temporal donde se extraerá el archivo CSV
-extracted_folder = "EDA/extracted/"
+# Nombre del archivo CSV dentro del ZIP
+csv_file_name = "output.csv"
 
-# Asegúrate de que la carpeta de extracción existe
-os.makedirs(extracted_folder, exist_ok=True)
-
-# Extraer el archivo CSV desde el archivo ZIP
+# Leer el archivo CSV directamente desde el ZIP sin extraerlo
 with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    zip_ref.extract('output.csv', extracted_folder)
+    # Leer el archivo CSV dentro del ZIP en memoria
+    with zip_ref.open(csv_file_name) as file:
+        # Cargar el archivo CSV en un DataFrame
+        df = pd.read_csv(file)
 
-# Ruta del archivo CSV extraído
-csv_file_path = os.path.join(extracted_folder, 'output.csv')
-
-# Cargar el archivo CSV usando pandas
-df = pd.read_csv(csv_file_path)
 
 # Convertir columna `datetime` a formato datetime
 df['datetime'] = pd.to_datetime(df['datetime'], errors='coerce')
-
+if df['datetime'].dt.tz is None:
+    # Si no tiene zona horaria, asignar UTC
+    df['datetime'] = df['datetime'].dt.tz_localize('UTC')
+# Ahora, convertir a la zona horaria de Ciudad de México (CDMX)
+df['datetime'] = df['datetime'].dt.tz_convert('America/Mexico_City')
 
 # Mostrar la imagen
 st.image(image, use_column_width=True)
@@ -56,7 +55,7 @@ if selected_candidates:
     filtered_data = df[df['candidate_name'].isin(selected_candidates)]
 else:
     filtered_data = df
-    
+
 # Crear interacciones por fecha y plataforma
 interactions_by_date = (
     filtered_data.groupby([filtered_data['datetime'].dt.date, 'platform'])['text']
