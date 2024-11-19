@@ -12,9 +12,9 @@ col1, col2 = st.columns(2)
 # Cuadro 1
 with col1:
     st.markdown("""
-        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 75%;">
-            <h2 style="color: #FFFFFF; text-align: center;">Domingo en la noche</h2>
-            <p style="color: #D3D3D3; font-size: 18px; text-align: center;">
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
+            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Domingo en la noche</h2>
+            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
                 Campaña Completa.
             </p>
         </div>
@@ -23,13 +23,17 @@ with col1:
 # Cuadro 2
 with col2:
     st.markdown("""
-        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 75%;">
-            <h2 style="color: #FFFFFF; text-align: center;">Miércoles en la campaña</h2>
-            <p style="color: #D3D3D3; font-size: 18px; text-align: center;">
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
+            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Miércoles en la campaña</h2>
+            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
                 Últimos 10 Días.
             </p>
         </div>
     """, unsafe_allow_html=True)
+
+
+st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
+
 
 
 def plot_template_plotly(fig, suptitle="Este es el título principal",
@@ -109,6 +113,11 @@ def get_custom_date_range():
     end_date = st.date_input("Fecha de fin", min_value=start_date, 
                              max_value=filtered_platform_data['datetime'].max().date())
     return start_date, end_date
+
+
+
+
+
 
 # Multiselect para seleccionar el periodo de tiempo
 time_option = st.multiselect(
