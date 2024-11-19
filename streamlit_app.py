@@ -9,20 +9,20 @@ intro = st.Page(
 
 facts = st.Page(
     "Background/facts.py",
-    title="Facts",
+    title="Hipótesis",
     icon=":material/help:",
 )
 
 # Eliminamos visualization y agregamos su contenido a eda_pages
 statistics = st.Page(
     "EDA/eda.py",
-    title="Statistics",
+    title="Interacciones según publicación",
     icon=":material/person_add:",
 )
 
 interactive_charts = st.Page(
     "Visualization/visualization.py",
-    title="Interactive Charts",
+    title="Comportamiento de usuarios",
     icon=":material/bar_chart:",
 )
 
