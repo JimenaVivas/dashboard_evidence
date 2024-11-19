@@ -14,7 +14,7 @@ from datetime import timedelta
 
 
 st.title('Cambios en el comportamiento de los usuarios')
-st.write("### Most discussed topics")
+st.write("### Temas más recurrentes")
 
 # Diccionario de sinónimos (para evitar palabras repetitivas)
 dictionary = {
@@ -70,31 +70,31 @@ def generate_wordcloud(data):
     return wordcloud
 
 # Generar nubes de palabras
-wordcloud_campaign = generate_wordcloud(filtered_platform_data)
-wordcloud_df = generate_wordcloud(df)
+wordcloud_campaign = generate_wordcloud(filtered_data)
+wordcloud_df = generate_wordcloud(last_10_days_df)
 
 # Crear una figura con dos subgráficas para mostrar las nubes de palabras
 fig, axes = plt.subplots(1, 2, figsize=(15, 7))
 
 # Mostrar nubes de palabras
 axes[0].imshow(wordcloud_campaign, interpolation='bilinear')
-axes[0].set_title("Entire campaign")
+axes[0].set_title("Campaña Entera")
 axes[0].axis('off')  # Quitar los ejes
 
 axes[1].imshow(wordcloud_df, interpolation='bilinear')
-axes[1].set_title(comparison_title)
+axes[1].set_title("Últimos 10 Días")
 axes[1].axis('off')  # Quitar los ejes
 
 # Mostrar la figura en Streamlit
 st.pyplot(fig)
 
 ############### Users más activos y sus diferencias en actividad
-st.write("### Most Relevant User")
+st.write("### Usuarios más relevantes")
 # Contar interacciones por usuario
-user_interactions_recent = df.groupby('username')['num_interaction'].sum().reset_index()
+user_interactions_recent = last_10_days_df.groupby('username')['num_interaction'].sum().reset_index()
 
 # Contar publicaciones por usuario en los últimos 10 días (last_10_days)
-user_posts_recent = df.groupby('username').size().reset_index(name='post_count_recent')
+user_posts_recent = last_10_days_df.groupby('username').size().reset_index(name='post_count_recent')
 
 # Unir las interacciones y las publicaciones para los últimos 10 días
 user_interactions_recent = pd.merge(user_interactions_recent, user_posts_recent, on='username')
@@ -109,10 +109,10 @@ user_interactions_recent = user_interactions_recent.sort_values(by='avg_interact
 top_10_users = user_interactions_recent.head(10)
 
 # Contar interacciones por usuario para toda la campaña (df2)
-user_interactions_all = filtered_platform_data.groupby('username')['num_interaction'].sum().reset_index(name='interaction_count_all')
+user_interactions_all = filtered_data.groupby('username')['num_interaction'].sum().reset_index(name='interaction_count_all')
 
 # Contar publicaciones por usuario para toda la campaña
-user_posts_all = filtered_platform_data.groupby('username').size().reset_index(name='post_count_all')
+user_posts_all = filtered_data.groupby('username').size().reset_index(name='post_count_all')
 
 # Unir las interacciones y las publicaciones para toda la campaña
 user_interactions_all = pd.merge(user_interactions_all, user_posts_all, on='username')
@@ -133,7 +133,7 @@ fig = go.Figure()
 fig.add_trace(go.Bar(
     x=merged_df['username'],
     y=merged_df['avg_interaction_recent'],
-    name=comparison_title,
+    name='Últimos 10 Días',
     marker=dict(color='#4c72b0'),
     hoverinfo='x+y+name'
 ))
@@ -142,16 +142,16 @@ fig.add_trace(go.Bar(
 fig.add_trace(go.Bar(
     x=merged_df['username'],
     y=merged_df['avg_interaction_all'],
-    name='Entire Campaign',
+    name='Campaña Entera',
     marker=dict(color='lightsteelblue'),
     hoverinfo='x+y+name'
 ))
 
 # Configurar el diseño del gráfico
 fig.update_layout(
-    title="Comparison of Average Interactions per Post by User: Last 10 Days vs. Entire Campaign",
+    title="Comparación de Interacciones Promedio por Publicación por Usuario: Últimos 10 Días vs. Toda la Campaña",
     xaxis_title="Username",
-    yaxis_title="Average Interactions per Post",
+    yaxis_title="Interacciones Promedio por Publicación",
     barmode='group',  # Barra agrupada (no apilada)
     xaxis=dict(tickangle=45),  # Rotar etiquetas del eje x
     legend=dict(title="Period"),
