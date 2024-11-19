@@ -250,7 +250,8 @@ st.plotly_chart(fig2)
 
 
 
-
+st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
+st.write("En las siguientes gráficas se puede comparar el cambio en número de interacciones dependiendo el momento del día y el día de la semana. En este caso se puede ver una alza de interacciones a la mitad de la semana el día miércoles, esto es debido al cierre de campañas que generó una parrticipación más activa en redes sociales.")
 
 ######## Heatmaps
 filtered_data['time_of_day'] = filtered_data['datetime'].apply(classify_time_of_day)
