@@ -116,6 +116,7 @@ def get_custom_date_range():
 
 
 
+st.write("En las siguientes gráficas se puede comparar diversos periodos de tiempo y el cambio en las interacciones dependiendo el momento de publicación. Se puede observar que en semanas de eventos clave se notan picos inusuales y una alza de interacciones de forma generalizada.")
 
 
 
