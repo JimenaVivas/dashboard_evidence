@@ -5,6 +5,32 @@ import plotly.express as px
 import pandas as pd
 import pytz
 st.title("Interacciones de acuerdo al momento de interacción")
+st.write("Los momentos con mayor cantidad de interacciones fueron:")
+# Crear dos columnas
+col1, col2 = st.columns(2)
+
+# Cuadro 1
+with col1:
+    st.markdown("""
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 75%;">
+            <h2 style="color: #FFFFFF; text-align: center;">Domingo en la noche</h2>
+            <p style="color: #D3D3D3; font-size: 18px; text-align: center;">
+                Campaña Completa.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+# Cuadro 2
+with col2:
+    st.markdown("""
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 75%;">
+            <h2 style="color: #FFFFFF; text-align: center;">Miércoles en la campaña</h2>
+            <p style="color: #D3D3D3; font-size: 18px; text-align: center;">
+                Últimos 10 Días.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
 
 def plot_template_plotly(fig, suptitle="Este es el título principal",
                          title="Esta es una descripción general del gráfico",
