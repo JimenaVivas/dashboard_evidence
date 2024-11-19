@@ -38,10 +38,9 @@ st.image(image, use_column_width=True)
 # Mostrar el texto formateado
 st.markdown(
     """
-    <h2 style='text-align: left; color: #c0c0c0;'>Datos Relevantes</h2>
+    <h2 style='text-align: left; color: #c0c0c0;'>Explicación de hipótesis</h2>
     <p style='font-size: 1.1em; color: #b0b0b0;'>
         La revisión de la literatura permite analizar y reflexionar si la teoría y la investigación previa ofrecen una respuesta, aunque sea parcial, a las preguntas de investigación o, en su defecto, proporcionan una guía clara para el planteamiento del estudio (Lawrence et al., citado por Hernández-Sampieri, 2014).  
-        
         El análisis de datos recuperados de diversas redes sociales brinda una comprensión más profunda del comportamiento de los usuarios y de la dinámica de la opinión pública. Este conocimiento puede ser invaluable para los candidatos y sus campañas políticas, permitiéndoles ajustar sus estrategias de manera más efectiva y maximizar sus beneficios en el proceso electoral.  
         En esta página web se examinará el comportamiento de los usuarios para identificar posibles cambios significativos en la campaña. La hipótesis sugiere que los 10 días previos a las elecciones, incluyendo los días de debates y anuncios clave, representan una muestra confiable del comportamiento de los usuarios en redes sociales.  
         Para evaluar esta hipótesis, se observarán los cambios en los patrones de publicación, como los horarios de actividad y su relación con el volumen de interacciones. Además, se analizarán las interacciones generadas por los usuarios más influyentes y las variaciones en los temas más discutidos. Este enfoque permitirá identificar tendencias clave y medir el impacto de los eventos de la campaña en el comportamiento digital de los usuarios. 
