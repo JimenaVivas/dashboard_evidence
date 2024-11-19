@@ -152,8 +152,8 @@ fig.add_trace(go.Bar(
 
 # Configurar el diseño del gráfico
 fig.update_layout(
-    title="Comparación de Interacciones Promedio por Publicación por Usuario: Últimos 10 Días vs. Toda la Campaña",
-    xaxis_title="Username",
+    title="Comparación de Interacciones Promedio por Publicación por Usuario.",
+    xaxis_title="Nombre del Usuario",
     yaxis_title="Interacciones Promedio por Publicación",
     barmode='group',  # Barra agrupada (no apilada)
     xaxis=dict(tickangle=45),  # Rotar etiquetas del eje x

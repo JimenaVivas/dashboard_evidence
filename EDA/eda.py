@@ -274,8 +274,8 @@ fig1 = px.imshow(heatmap_data_df2,
                  title="Campaña Completa"
                 )
 fig1.update_layout(
-    xaxis_title="Time of Day",
-    yaxis_title="Day of the Week",
+    xaxis_title="Momento del día",
+    yaxis_title="Día de la semana",
     xaxis_tickangle=45
 )
 
@@ -286,8 +286,8 @@ fig2 = px.imshow(heatmap_data_last_10_days,
                  title="Últimos 10 días"
                 )
 fig2.update_layout(
-    xaxis_title="Time of Day",
-    yaxis_title="",
+    xaxis_title="Momento del Día",
+    yaxis_title="Día de la semana",
     xaxis_tickangle=45
 )
 
