@@ -251,7 +251,6 @@ st.plotly_chart(fig2)
 
 
 st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
-st.write("En las siguientes gráficas se puede comparar el cambio en número de interacciones dependiendo el momento del día y el día de la semana. En este caso se puede ver una alza de interacciones a la mitad de la semana el día miércoles, esto es debido al cierre de campañas que generó una parrticipación más activa en redes sociales.")
 
 ######## Heatmaps
 filtered_data['time_of_day'] = filtered_data['datetime'].apply(classify_time_of_day)
@@ -270,7 +269,7 @@ heatmap_data_last_10_days = heatmap_data_last_10_days[list(time_of_day_colors.ke
 # Crear las gráficas de calor con Plotly
 # Heatmap para la campaña completa
 fig1 = px.imshow(heatmap_data_df2,
-                 labels=dict(x="Time of Day", y="Day of the Week", color="Average Interactions"),
+                 labels=dict(x="Momento del día", y="Día de la Semana", color="Interacciones Promedio"),
                  color_continuous_scale='YlGnBu',
                  title="Campaña Completa"
                 )
@@ -282,7 +281,7 @@ fig1.update_layout(
 
 # Heatmap para los últimos 10 días
 fig2 = px.imshow(heatmap_data_last_10_days,
-                 labels=dict(x="Momento del día", y="Day of the Week", color="Average Interactions"),
+                 labels=dict(x="Momento del día", y="Día de la Semana", color="Interacciones Promedio"),
                  color_continuous_scale='YlGnBu',
                  title="Últimos 10 días"
                 )
@@ -294,6 +293,7 @@ fig2.update_layout(
 
 # Mostrar las gráficas en Streamlit
 st.title("Interacciones promedio dependiendo el horario y el día de publicación")
+st.write("En las siguientes gráficas se puede comparar el cambio en número de interacciones dependiendo el momento del día y el día de la semana. En este caso se puede ver una alza de interacciones a la mitad de la semana el día miércoles, esto es debido al cierre de campañas que generó una parrticipación más activa en redes sociales.")
 
 # Mostrar las dos gráficas de calor en Streamlit en secciones separadas
 st.plotly_chart(fig1)
