@@ -4,6 +4,8 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import pytz
+from plotly.subplots import make_subplots
+
 st.title("Interacciones de acuerdo al momento de interacción")
 st.write("Los momentos con mayor cantidad de interacciones fueron:")
 # Crear dos columnas
@@ -249,8 +251,77 @@ plot_template_plotly(
 st.plotly_chart(fig2)
 
 
-
 st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
+
+
+
+
+##
+st.write("### Interacciones Promedio por Candidato por Día de la Semana")
+
+
+# Filter and prepare data
+full_period = filtered_data.groupby(['week_day', 'candidate_name'])['num_interaction'].mean().reset_index()
+full_period['week_day'] = pd.Categorical(full_period['week_day'], categories=week_order, ordered=True)
+
+last_days = last_10_days_df.groupby(['week_day', 'candidate_name'])['num_interaction'].mean().reset_index()
+last_days['week_day'] = pd.Categorical(last_days['week_day'], categories=week_order, ordered=True)
+
+# Pivot tables to get candidates as columns
+full_period_pivot = full_period.pivot(index='week_day', columns='candidate_name', values='num_interaction').fillna(0)
+last_days_pivot = last_days.pivot(index='week_day', columns='candidate_name', values='num_interaction').fillna(0)
+
+# Create subplot
+fig = make_subplots(
+    rows=1, cols=2,  # 1 row, 2 columns
+    shared_yaxes=True,  # Share y-axis
+    subplot_titles=("Campaña Completa", "10 Días Previos a la Elección"),
+    vertical_spacing=0.1  # Space between subplots
+)
+
+# Add traces for Full Period plot
+for candidate in full_period_pivot.columns:
+    fig.add_trace(go.Bar(
+        x=full_period_pivot.index,
+        y=full_period_pivot[candidate],
+        name=f"Campaña Completa - {candidate}",  # Prefix to indicate this is from full period
+        hoverinfo='y+name',
+        marker=dict(color=candidate_colors.get(candidate, 'blue')),  # Use colors for candidates
+    ), row=1, col=1)  # First subplot
+
+# Add traces for Last 10 Days plot
+for candidate in last_days_pivot.columns:
+    fig.add_trace(go.Bar(
+        x=last_days_pivot.index,
+        y=last_days_pivot[candidate],
+        name=f"10 Últimos Días - {candidate}",  # Prefix to indicate this is from last 10 days
+        hoverinfo='y+name',
+        marker=dict(color=candidate_colors.get(candidate, 'red')),  # Use different color for differentiation
+    ), row=1, col=2)  # Second subplot
+
+# Update layout
+fig.update_layout(
+    barmode='stack',  # Stack bars
+    xaxis_title="Día de la Semana",
+    yaxis_title="Interacciones Promedio",
+    xaxis=dict(tickangle=45),
+    plot_bgcolor="white",
+    showlegend=True,  # Show legend
+    legend_title="Candidatos",  # Title for the legend
+    legend=dict(
+        x=1,  # Positioning of legend (outside the plot)
+        y=1,
+        traceorder="normal",  # Ordering of items in the legend
+        orientation="v",  # Vertical orientation
+        xanchor="left"
+    )
+)
+
+# Show the figure in Streamlit
+st.plotly_chart(fig, use_container_width=True)
+
+
+
 
 ######## Heatmaps
 filtered_data['time_of_day'] = filtered_data['datetime'].apply(classify_time_of_day)
@@ -298,4 +369,7 @@ st.write("En las siguientes gráficas se puede comparar el cambio en número de 
 # Mostrar las dos gráficas de calor en Streamlit en secciones separadas
 st.plotly_chart(fig1)
 st.plotly_chart(fig2)
+
+
+
 
