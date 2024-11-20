@@ -13,7 +13,7 @@ from datetime import timedelta
 
 
 
-st.title('Cambios en el comportamiento de los usuarios')
+st.title("Comparación de Interacciones Promedio por Publicación por Usuario")
 st.write("### Temas más recurrentes")
 st.write("Se observa a continuación el cambio de temas más recurrentes en la campaña y cómo cambio su frecuencia.")
 
