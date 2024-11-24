@@ -1,48 +1,118 @@
-import streamlit as st
+from EDA.eda import plot_template_plotly
 import streamlit as st
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image  # Librería para manejar imágenes
-
+import plotly.graph_objects as go
+from PIL import Image  
 st.title("Comparación de Interacciones Promedio por Publicación por Usuario")
 st.write("### Temas más recurrentes")
 st.write("Se observa a continuación el cambio de temas más recurrentes en la campaña y cómo cambio su frecuencia.")
 
 # Cargar la imagen desde la carpeta 'images'
+# En este caso se utiliza la imagen en lugar de un archivo csv o el dataframe en pickle debido a que no es interactivo y resulta más sencillo así, 
+# además de mantener la página rápida evitando que se realicen procesos para llevar a cabo la gráfica
 image = Image.open('images/Topics.png')
-
 # Mostrar la imagen en Streamlit
 st.image(image, use_container_width=True)
 
-# Merge interactions and posts data for the entire campaign
-user_interactions_all = pd.merge(user_interactions_all, user_posts_all, on='username')
-
-# Calculate average interactions per post for the entire campaign
-user_interactions_all['avg_interaction_all'] = user_interactions_all['interaction_count_all'] / user_interactions_all['post_count_all']
-
-
-
 
 ####### Interactions by most popular users
+st.write("### Interacciones en los diez usuarios más populares")
 
-with open('interactions_data.pkl', 'rb') as f:
+with open('EDA/interactions_data.pkl', 'rb') as f:
     merged_df = pickle.load(f)    # Mostrar una vista previa del DataFrame
 
-    # Crear la gráfica
-    st.write("Gráfica de Interactions per Post by User:")
-    
-    # Configuración de la gráfica
-    X_axis = np.arange(len(merged_df))
-    
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.bar(X_axis - 0.2, merged_df['avg_interaction_recent'], 0.4, label='Last 10 Days', color='plum')
-    ax.bar(X_axis + 0.2, merged_df['avg_interaction_all'], 0.4, label='Entire Campaign', color='cadetblue')
-    ax.set_xticks(X_axis)
-    ax.set_xticklabels(merged_df['username'], rotation=45, ha="right")
-    ax.set_xlabel("Username")
-    ax.set_ylabel("Average Interactions per Post")
-    ax.legend()
-    
+    # Crear la gráfica con Plotly
+    fig = go.Figure()
+
+    # Agregar barras para los últimos 10 días
+    fig.add_trace(go.Bar(
+        x=merged_df['username'],
+        y=merged_df['avg_interaction_recent'],
+        name='Últimos 10 días',
+        marker_color='#1b9e77'
+    ))
+
+    # Agregar barras para toda la campaña
+    fig.add_trace(go.Bar(
+        x=merged_df['username'],
+        y=merged_df['avg_interaction_all'],
+        name='Campaña completa',
+        marker_color='lightsteelblue'
+    ))
+
+    # Configuración del diseño
+    fig.update_layout(
+        title={
+            'text': "Interactions per Post by User",
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        },
+        barmode='group',  # Agrupar barras
+        legend_title="Periodo de Tiempo",
+        template="plotly_white"  # Tema de la gráfica
+    )
+    plot_template_plotly(
+    fig,
+    suptitle='Promedio de Interacciones',
+    title='Por Publicación de los 10 Usuarios Más Populares',
+    suptitle_x=0.58, suptitle_y=0.9,
+    title_x=0.52, title_y=1.1)
+
     # Mostrar la gráfica en Streamlit
-    st.pyplot(fig)
+    st.plotly_chart(fig)
+
+
+##################### Posts por usuario
+st.write("### Diferencia en la actividad de los diez usuarios más populares")
+
+# Cargar el archivo pickle directamente
+with open('EDA/merged_posts_data.pkl', 'rb') as f:
+    data = pickle.load(f)
+
+# Crear la gráfica con Plotly
+    fig = go.Figure()
+
+    # Agregar barras para los últimos 10 días
+    fig.add_trace(go.Bar(
+        x=data['username'],
+        y=data['avg_posts_per_day_recent'],
+        name='Últimos 10 días',
+        marker_color='#1b9e77'
+    ))
+
+    # Agregar barras para toda la campaña
+    fig.add_trace(go.Bar(
+        x=data['username'],
+        y=data['avg_posts_per_day_all'],
+        name='Campaña Completa',
+        marker_color='lightsteelblue'
+    ))
+
+    # Configuración del diseño
+    fig.update_layout(
+        title={
+            'text': "Average Posts per Day by User",
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        },
+        xaxis_title="Nombre de Usuario",
+        yaxis_title="Promedio de Publicaciones por Día",
+        barmode='group',  # Agrupar barras
+        legend_title="Periodo de Tiempo",
+        template="plotly_white"  # Tema de la gráfica
+    )
+    plot_template_plotly(
+    fig,
+    suptitle='Promedio de Publicaciones',
+    title='Por Publicación de los 10 Usuarios Más Populares',
+    suptitle_x=0.58, suptitle_y=0.9,
+    title_x=0.52, title_y=1.1,
+    )
+    # Mostrar la gráfica en Streamlit
+    st.plotly_chart(fig)
