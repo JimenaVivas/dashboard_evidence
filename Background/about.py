@@ -1,37 +1,43 @@
 import streamlit as st
 from PIL import Image
 
-# Title and description
+# Título y descripción
 st.markdown(
     """
     <div style='text-align: center; padding: 2em; background-color: #f8f9fa;'>
         <h2 style='font-size: 2em; color: #4a4a4a;'>About Us</h2>
         <p style='font-size: 1.2em; color: #6c757d; line-height: 1.5;'>
-            We are a team of dedicated professionals passionate about creating innovative solutions that help people.
-            Our goal is to make the world a better place through technology.
+            Somos un equipo multidisciplinario del Tec de Monterrey interesados en el análisis de datos y sus aplicaciones.
         </p>
     </div>
     """, unsafe_allow_html=True
 )
 
-# Define images and team member details
+# Definir las imágenes y los miembros del equipo con los textos correspondientes
 team_members = [
-    {"name": "Jane Smith", "role": "Project Manager", "image": "images/rosa.jpeg"},
-    {"name": "John Doe", "role": "Lead Developer", "image": "images/blue.webp"},
-    {"name": "Emma Brown", "role": "UI/UX Designer", "image": "images/gray.jpg"},
+    {"name": "Raymundo Aarón Toledo González", "image": "images/Ray.png", "text": "IIS"},
+    {"name": "Miguel Ponce de León", "image": "images/Mike.png", "text": "LAF"},
+    {"name": "Jimena Vivas Hernández", "image": "images/io.png", "text": "IMD"},
+    {"name": "Daniel Borja Farfán", "image": "images/Borja.jpg", "text": "LEM"},
+    {"name": "José María Juárez Villar", "image": "images/Chema.png", "text": "IBT"},
 ]
 
-# Create columns for each team member
+# Crear columnas para cada miembro del equipo
 cols = st.columns(len(team_members))
 for col, member in zip(cols, team_members):
     with col:
-        # Display each member's image
+        # Mostrar la imagen de cada miembro
         image = Image.open(member["image"])
-        st.image(image, use_column_width=True, caption=member["name"])
-        # Display member name and role
+        st.image(image, use_container_width=True)
+        # Mostrar el nombre del miembro con un tamaño más pequeño
         st.markdown(
-            f"<h3 style='text-align: center; color: #4a4a4a;'>{member['name']}</h3>", unsafe_allow_html=True
+            f"<h3 style='text-align: center; color: #4a4a4a; font-size: 1.3em;'>{member['name']}</h3>", unsafe_allow_html=True
         )
+        # Mostrar el texto correspondiente debajo del nombre
         st.markdown(
-            f"<p style='text-align: center; color: #6c757d;'>{member['role']}</p>", unsafe_allow_html=True
+            f"<p style='text-align: center; color: #6c757d; font-size: 0.8em;'>{member['text']}</p>", unsafe_allow_html=True
         )
+
+# Imagen adicional (QR) centrada con st.image
+st.markdown("<h3 style='text-align: left; color: #4a4a4a;'>Scan the QR</h3>", unsafe_allow_html=True)
+st.image("images/qr.png", width=150, use_container_width=False)
