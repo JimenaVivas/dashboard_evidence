@@ -8,35 +8,34 @@ image = Image.open("images/votaciones2021.jpg")
 st.image(image, caption="Elecciones de México 2024", use_container_width=True)
 
 # Center and style the subheader and text
-st.markdown("<h2 style='text-align: center; color: dimgray;'>Elecciones</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: dimgray;'>Un Momento Histórico en la Política Mexicana</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>
         <p style='font-size: 1.1em; color: dimgray;'>
-            En 2024 México vió las mayores elecciones populares en su historia. La contienda electoral giró alrededor de las elecciones presidenciales y el tema más importante durante esta elección fue la  disputa de la elección entre dos candidatas mujeres, lo cual no había sucedido antes.
+        Las elecciones presidenciales de México en 2024 marcaron un momento histórico al ser las más grandes en términos de participación y relevancia. Por primera vez, dos mujeres lideraron las principales coaliciones políticas en una contienda por la presidencia, destacando un cambio significativo en el panorama político del país. Este hecho atrajo atención nacional e internacional, generando un fuerte debate sobre la equidad de género, las políticas sociales y las prioridades del electorado mexicano.
         </p>
     </div>
     """, unsafe_allow_html=True
 )
 
-st.markdown("<h2 style='text-align: center; color: dimgray;'>Resultados</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: dimgray;'>El Rol Transformador de las Redes Sociales</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>
         <p style='font-size: 1.1em; color: dimgray;'>
-            La candidata Claudia Sheinbaum, quien contendió por parte de MORENA, fue la ganadora con un 60% de los votos.
+            Un elemento crucial en estas elecciones fue el impacto de las redes sociales como plataformas de comunicación y persuasión. Candidatas, partidos y ciudadanos utilizaron estas herramientas no solo para difundir propuestas políticas, sino también para movilizar votantes y generar discusiones. Las redes sociales sirvieron como espacios para debates abiertos, pero también intensificaron los desafíos relacionados con la desinformación y las noticias falsas. Las campañas digitales se caracterizaron por su creatividad, con el uso de memes, transmisiones en vivo y estrategias de segmentación para conectar con votantes jóvenes y urbanos.
         </p>
     </div>
     """, unsafe_allow_html=True
 )
 
-st.markdown("<h2 style='text-align: center; color: dimgray;'>Redes Sociales</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: dimgray;'>Visibilización y Polarización: Dos Caras de la Moneda</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>
         <p style='font-size: 1.1em; color: dimgray;'>
-            En las elecciones de México 2024, las redes sociales desempeñaron un papel crucial al influir en la opinión pública y facilitar la comunicación directa entre los candidatos y la ciudadanía. Estas plataformas permitieron una rápida difusión de información y la organización de movimientos políticos, impactando directamente en el nivel de participación y en las estrategias de campaña. Además, ofrecieron un espacio para el debate y la discusión, donde las audiencias pudieron interactuar y expresar sus opiniones de manera inmediata, contribuyendo a una dinámica electoral más participativa y conectada.
-        </p>
+        Además, las redes sociales jugaron un papel determinante en la visibilización de temas clave, como la inclusión de grupos minoritarios y la urgencia de políticas climáticas. Sin embargo, también expusieron la polarización entre diferentes sectores de la sociedad, haciendo evidente la necesidad de un diálogo más constructivo. En conjunto, estas dinámicas reflejan cómo el entorno digital transformó la manera en que se desarrollaron las elecciones, marcando un precedente para futuros procesos democráticos en México.        </p>
     </div>
     """, unsafe_allow_html=True
 )
