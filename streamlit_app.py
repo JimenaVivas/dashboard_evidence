@@ -3,17 +3,6 @@ import streamlit as st
 # --- Configuración inicial --- (esto debe ir al inicio del script)
 st.set_page_config(page_title="Data Analytics App", page_icon=":bar_chart:", layout="wide")
 
-# Cambiar el color del menú lateral
-st.markdown(
-    """
-    <style>
-    .css-1d391kg {
-        background-color: #006F59;  /* Aquí puedes poner el color que desees */
-    }
-    </style>
-    """, 
-    unsafe_allow_html=True
-)
 
 # --- Página de introducción como "main page" ---
 if "main_page" not in st.session_state:

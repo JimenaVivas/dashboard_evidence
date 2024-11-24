@@ -58,9 +58,7 @@ interactions_by_date = (
 )
 interactions_by_date.columns = ['datetime', 'platform', 'text']
 
-
-
-# Crear gráfico de líneas con Plotly
+# Crear gráfico de líneas con Plotly para hacerlo dinámico :))
 fig = go.Figure()
 
 # Colores personalizados para las plataformas

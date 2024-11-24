@@ -8,7 +8,7 @@ image = Image.open("images/votaciones2021.jpg")
 st.image(image, caption="Elecciones de México 2024", use_container_width=True)
 
 # Center and style the subheader and text
-st.markdown("<h2 style='text-align: center; color: dimgray;'>Un Momento Histórico en la Política Mexicana</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: left; color: dimgray;'>Un Momento Histórico en la Política Mexicana</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>
@@ -19,7 +19,7 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-st.markdown("<h2 style='text-align: center; color: dimgray;'>El Rol Transformador de las Redes Sociales</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: left; color: dimgray;'>El Rol Transformador de las Redes Sociales</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>
@@ -30,7 +30,7 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-st.markdown("<h2 style='text-align: center; color: dimgray;'>Visibilización y Polarización: Dos Caras de la Moneda</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: left; color: dimgray;'>Visibilización y Polarización: Dos Caras de la Moneda</h2>", unsafe_allow_html=True)
 st.markdown(
     """
     <div style='text-align: left; padding-top: 20px;'>

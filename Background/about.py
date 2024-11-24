@@ -13,7 +13,7 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# Definir las imágenes y los miembros del equipo con los textos correspondientes
+# Definir las imágenes, los miembros del equipo y carrera
 team_members = [
     {"name": "Raymundo Aarón Toledo González", "image": "images/Ray.png", "text": "IIS"},
     {"name": "Miguel Ponce de León", "image": "images/Mike.png", "text": "LAF"},
@@ -33,11 +33,12 @@ for col, member in zip(cols, team_members):
         st.markdown(
             f"<h3 style='text-align: center; color: #4a4a4a; font-size: 1.3em;'>{member['name']}</h3>", unsafe_allow_html=True
         )
-        # Mostrar el texto correspondiente debajo del nombre
+        # Mostrar iniciales de carrera correspondiente debajo del nombre
         st.markdown(
             f"<p style='text-align: center; color: #6c757d; font-size: 0.8em;'>{member['text']}</p>", unsafe_allow_html=True
         )
 
 # Imagen adicional (QR) centrada con st.image
-st.markdown("<h3 style='text-align: left; color: #4a4a4a;'>Scan the QR</h3>", unsafe_allow_html=True)
-st.image("images/qr.png", width=150, use_container_width=False)
+col1, col2, col3, col4, col5 =st.columns(5)
+with col3:
+    st.image("images/qr.png", width=200)

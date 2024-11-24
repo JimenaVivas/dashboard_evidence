@@ -1,4 +1,3 @@
-# Importación de librerías
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
@@ -7,7 +6,6 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 from Background.facts import filtered_data  # Asegúrate de que esta importación sea válida
 
-# Configuración inicial de la aplicación
 st.title("Interacciones de acuerdo al momento de interacción")
 
 # Función para aplicar plantilla a gráficos Plotly
@@ -36,7 +34,7 @@ candidate_colors = {
     'Xóchitl Gálvez': 'blue',
     'Jorge Álvarez Máynez': 'darkorange'
 }
-time_of_day_colors = {
+time_of_day_colors = {         # No se usaran los colores pero será la lista para el orden de la primera gráfica
     'Amanecer Temprano': 'dimgray',
     'Amanecer Tardío': 'lightsalmon',
     'Mañana Temprana': 'gold',
@@ -86,9 +84,9 @@ platform_mapping = {
     "Twitter": "twitter",
     "Instagram": "instagram",
     "YouTube": "youtube"
-}
+} # Solo para hacer que se vea mejor agregando mayúsculas
 
-# Traducción de días de la semana
+# Traducción de días de la semana (El df en pickle se descargó del EDA pero con los nombres en inglés)
 english_to_spanish_days = {
     "Monday": "Lunes",
     "Tuesday": "Martes",
@@ -98,7 +96,7 @@ english_to_spanish_days = {
     "Saturday": "Sábado",
     "Sunday": "Domingo"
 }
-week_order_spanish = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+week_order_spanish = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"] # Para mayor comodidad al leer la gráfica
 
 # Filtros interactivos
 time_option = st.multiselect(
@@ -258,18 +256,18 @@ fig2.update_layout(
     yaxis=dict(
         title='Interacciones',  # Etiqueta del eje vertical
         title_font=dict(size=15, color='black'),
-        tickfont=dict(size=14, color='black')  # Nombres de los periodos más grandes y oscuros
+        tickfont=dict(size=14, color='black')  
     ),
     xaxis=dict(
-        tickfont=dict(size=14, color='black')  # Etiquetas del eje horizontal en negro
+        tickfont=dict(size=14, color='black')
     )
 )
-
 st.plotly_chart(fig2)
+
 st.markdown("<br>", unsafe_allow_html=True)  # Salto de línea
 
 
-##
+######## Interacciones por Día por Mención de Cada Candidato
 # Datos filtrados
 filtered_platform_data = filtered_data.copy()  # Asegúrate de usar los datos correctos
 filtered_platform_data['week_day'] = filtered_platform_data['datetime'].dt.day_name().map(english_to_spanish_days)
@@ -335,8 +333,7 @@ fig.update_layout(
 # Mostrar la gráfica
 st.plotly_chart(fig, use_container_width=True)
 
-### Heatmaps
-# Puedes crear un diccionario similar para los momentos del día si es necesario, por ejemplo:
+######### Heatmaps
 time_of_day_translation = {
     'Early Dawn': 'Amanecer temprano',
     'Late Dawn': 'Amanecer tardío',
@@ -346,11 +343,11 @@ time_of_day_translation = {
     'Afternoon': 'Tarde',
     'Early Evening': 'Tarde Noche',
     'Night': 'Noche'
-}
+} # Debido a que el df viene con los nombres en inglés
 
 # Cargar los datos de los heatmaps
 with open('EDA/heatmap_data_full_campaign.pkl', 'rb') as f:
-    heatmap_data_df2 = pickle.load(f)
+    heatmap_data_df2 = pickle.load(f)  # Los archivos se descargaron con pickle en inglés del EDA
 
 with open('EDA/heatmap_data_last_10_days.pkl', 'rb') as f:
     heatmap_data_last_10_days = pickle.load(f)
@@ -390,15 +387,15 @@ fig.add_trace(
         x=heatmap_data_last_10_days.columns,
         y=heatmap_data_last_10_days.index,
         colorscale='YlGnBu',
-        showscale=False  # Desactivar el colorbar en este heatmap
+        showscale=False  # Desactivar el colorbar en este heatmap pa que no salga duplicado
     ),
     row=1, col=2
 )
 
 # Actualizar la configuración de los ejes y diseño
 fig.update_layout(
-    height=500,  # Ajustar la altura total del gráfico
-    width=1400  # Ajustar el ancho total del gráfico
+    height=500,  
+    width=1400  
 )
 # Título y descripción
 st.write("Los momentos con mayor cantidad de interacciones fueron:")
@@ -421,7 +418,8 @@ with col2:
         </div>
     """, unsafe_allow_html=True)
 
-st.markdown("<br>", unsafe_allow_html=True)  # Salto de línea
+st.markdown("<br>", unsafe_allow_html=True)  
+
 st.markdown(
     """
     ### 📅 Miércoles 29 de mayo de 2024. Cierre de campaña. 
