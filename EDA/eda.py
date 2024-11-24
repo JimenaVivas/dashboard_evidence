@@ -324,18 +324,15 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 ######## Heatmaps
-filtered_data['time_of_day'] = filtered_data['datetime'].apply(classify_time_of_day)
-last_10_days_df['time_of_day'] = last_10_days_df['datetime'].apply(classify_time_of_day)
 
+import pickle
 
+# Cargar las tablas usando pickle
+with open('EDA/heatmap_data_full_campaign.pkl', 'rb') as f:
+    heatmap_data_df2 = pickle.load(f)
 
-heatmap_data_df2 = filtered_data.pivot_table(index='week_day', columns='time_of_day', values='num_interaction', aggfunc='mean')
-heatmap_data_df2 = heatmap_data_df2.reindex(week_order)  # Ordenar los días de la semana
-heatmap_data_df2 = heatmap_data_df2[list(time_of_day_colors.keys())]  # Ordenar las horas del día
-
-heatmap_data_last_10_days = last_10_days_df.pivot_table(index='week_day', columns='time_of_day', values='num_interaction', aggfunc='mean')
-heatmap_data_last_10_days = heatmap_data_last_10_days.reindex(week_order)  # Ordenar los días de la semana
-heatmap_data_last_10_days = heatmap_data_last_10_days[list(time_of_day_colors.keys())]  # Ordenar las horas del día
+with open('EDA/heatmap_data_last_10_days.pkl', 'rb') as f:
+    heatmap_data_last_10_days = pickle.load(f)
 
 # Crear las gráficas de calor con Plotly
 # Heatmap para la campaña completa

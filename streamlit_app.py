@@ -1,68 +1,95 @@
 import streamlit as st
 
-# Páginas individuales
-intro = st.Page(
-    "Background/intro.py",
-    title="Introducción",
-    icon=":material/help:",
+# --- Configuración inicial --- (esto debe ir al inicio del script)
+st.set_page_config(page_title="Data Analytics App", page_icon=":bar_chart:", layout="wide")
+
+# Cambiar el color del menú lateral
+st.markdown(
+    """
+    <style>
+    .css-1d391kg {
+        background-color: #006F59;  /* Aquí puedes poner el color que desees */
+    }
+    </style>
+    """, 
+    unsafe_allow_html=True
 )
 
-facts = st.Page(
-    "Background/facts.py",
-    title="Hipótesis",
-    icon=":material/help:",
-)
+# --- Página de introducción como "main page" ---
+if "main_page" not in st.session_state:
+    st.session_state.main_page = True  # Indica si estamos en la página principal
 
-# Eliminamos visualization y agregamos su contenido a eda_pages
-statistics = st.Page(
-    "EDA/eda.py",
-    title="Interacciones según publicación",
-    icon=":material/person_add:",
-)
+if st.session_state.main_page:
+    # --- Logo y Título ---
+    st.image("images/images.jpeg", use_container_width=False, width=200)
+    st.title("Data Analytics App")
 
-interactive_charts = st.Page(
-    "Visualization/visualization.py",
-    title="Comportamiento de usuarios",
-    icon=":material/bar_chart:",
-)
+    # --- Contenido de la introducción ---
+    st.header("¡Bienvenido!")
+    st.write(
+        """
+        Bienvenido a la aplicación de análisis de datos. Aquí podrás explorar información detallada sobre 
+        interacciones de usuarios, análisis de sentimientos, y más. ¡Comencemos!
+        """
+    )
+    st.write("---")
 
-ml = st.Page(
-    "ml/ml_analysis.py",
-    title="Análisis de Sentimientos",
-    icon=":material/healing:",
-)
+    # --- Botón para ir a Hipótesis ---
+    if st.button("Ir a Hipótesis"):
+        st.session_state.main_page = False  # Cambiar el estado
+        st._set_query_params(page="hipotesis")  # Actualizar los parámetros
+        # No es necesario hacer "rerun", Streamlit detectará el cambio automáticamente.
 
-about = st.Page(
-    "Background/about.py",
-    title="Sobre Nosotros",
-    icon=":material/person_add:",
-)
+else:
+    # --- Importar navegación normal ---
+    intro = st.Page(
+        "Background/intro.py",
+        title="Introducción",
+    )
 
-cr = st.Page(
-    "Background/example.py",
-    title="Copyright",
-    icon=":material/person_add:",
-)
+    facts = st.Page(
+        "Background/facts.py",
+        title="Hipótesis",
+    )
 
-# Reorganización de las secciones
-intro_pages = [intro, facts]
-eda_pages = [statistics, interactive_charts]  # Ahora Data Analysis incluye ambas páginas
-ml_pages = [ml]
-about_pages = [about, cr]
+    statistics = st.Page(
+        "EDA/eda.py",
+        title="Interacciones según publicación",
+    )
 
-# Actualizamos el diccionario de navegación
-page_dict = {
-    "Introducción": intro_pages,
-    "Análisis": eda_pages,  # Sección combinada de Statistics e Interactive Charts
-    "Predicción": ml_pages,
-    "Sobre Nosotros": about_pages,
-}
+    interactive_charts = st.Page(
+        "Visualization/visualization.py",
+        title="Comportamiento de usuarios",
+    )
 
-# Interfaz principal
-# Agregar logo
-# st.title("Data Analytics ")
-st.logo("images/images.jpeg", icon_image="images/images.jpeg")
+    ml = st.Page(
+        "ml/ml_analysis.py",
+        title="Análisis de Sentimientos",
+    )
 
-# Navegación y ejecución de la página seleccionada
-pg = st.navigation(page_dict)
-pg.run()
+    about = st.Page(
+        "Background/about.py",
+        title="Sobre Nosotros",
+    )
+
+    cr = st.Page(
+        "Background/example.py",
+        title="Copyright",
+    )
+
+    # --- Navegación ---
+    intro_pages = [intro, facts]
+    eda_pages = [statistics, interactive_charts]
+    ml_pages = [ml]
+    about_pages = [about, cr]
+
+    page_dict = {
+        "Introducción": intro_pages,
+        "Análisis": eda_pages,  # Sección combinada de Statistics e Interactive Charts
+        "Predicción": ml_pages,
+        "Sobre Nosotros": about_pages,
+    }
+
+    # --- Generar el menú lateral ---
+    pg = st.navigation(page_dict)
+    pg.run()

@@ -6,23 +6,13 @@ import seaborn as sns
 import plotly.graph_objects as go
 import zipfile
 import os
+import pickle
 
 # Cargar la imagen
 image = Image.open("images/mapa.webp")
 
-# Ruta al archivo ZIP
-zip_file_path = "EDA/csv.zip"
-
-# Nombre del archivo CSV dentro del ZIP
-csv_file_name = "output.csv"
-
-# Leer el archivo CSV directamente desde el ZIP sin extraerlo
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    # Leer el archivo CSV dentro del ZIP en memoria
-    with zip_ref.open(csv_file_name) as file:
-        # Cargar el archivo CSV en un DataFrame
-        df = pd.read_csv(file)
-
+with open('EDA/df.pkl', 'rb') as f:
+    df = pickle.load(f)
 
 # Convertir columna `datetime` a formato datetime
 df['datetime'] = pd.to_datetime(df['datetime'], errors='coerce')
