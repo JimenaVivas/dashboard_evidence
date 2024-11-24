@@ -397,7 +397,7 @@ fig.add_trace(
 
 # Actualizar la configuración de los ejes y diseño
 fig.update_layout(
-    height=600,  # Ajustar la altura total del gráfico
+    height=500,  # Ajustar la altura total del gráfico
     width=1400  # Ajustar el ancho total del gráfico
 )
 # Título y descripción
