@@ -348,8 +348,6 @@ time_of_day_translation = {
     'Night': 'Noche'
 }
 
-
-
 # Cargar los datos de los heatmaps
 with open('EDA/heatmap_data_full_campaign.pkl', 'rb') as f:
     heatmap_data_df2 = pickle.load(f)
@@ -423,6 +421,12 @@ with col2:
         </div>
     """, unsafe_allow_html=True)
 
-
+st.markdown("<br>", unsafe_allow_html=True)  # Salto de línea
+st.markdown(
+    """
+    ### 📅 Miércoles 29 de mayo de 2024. Cierre de campaña. 
+    """, 
+    unsafe_allow_html=True,
+)
 # Mostrar el gráfico en Streamlit
 st.plotly_chart(fig)

@@ -19,7 +19,7 @@ st.image(image, use_container_width=True)
 
 ####### Interactions by most popular users
 st.write("### Interacciones en los diez usuarios más populares")
-
+st.write("* En este caso los usuarios que se muestran son aquellos con mayor número de interraciones en los 10 días previos a la elección.")
 with open('EDA/interactions_data.pkl', 'rb') as f:
     merged_df = pickle.load(f)    # Mostrar una vista previa del DataFrame
 
@@ -68,6 +68,7 @@ with open('EDA/interactions_data.pkl', 'rb') as f:
 
 ##################### Posts por usuario
 st.write("### Diferencia en la actividad de los diez usuarios más populares")
+st.write("* En este caso los usuarios que se muestran son aquellos que fueron más constantes y con mayor número de publicaciones los últimos 10 días del proceso electoral.")
 
 # Cargar el archivo pickle directamente
 with open('EDA/merged_posts_data.pkl', 'rb') as f:
