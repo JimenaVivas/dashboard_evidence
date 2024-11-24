@@ -23,7 +23,7 @@ if df['datetime'].dt.tz is None:
 df['datetime'] = df['datetime'].dt.tz_convert('America/Mexico_City')
 
 # Mostrar la imagen
-st.image(image, use_column_width=True)
+st.image(image, use_container_width=True)
 
 # Mostrar el texto formateado
 st.markdown(

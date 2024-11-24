@@ -5,7 +5,7 @@ from PIL import Image
 image = Image.open("images/votaciones2021.jpg")
 
 # Display image with a caption
-st.image(image, caption="Elecciones de México 2024", use_column_width=True)
+st.image(image, caption="Elecciones de México 2024", use_container_width=True)
 
 # Center and style the subheader and text
 st.markdown("<h2 style='text-align: center; color: dimgray;'>Elecciones</h2>", unsafe_allow_html=True)
