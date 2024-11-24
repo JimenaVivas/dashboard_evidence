@@ -394,7 +394,7 @@ fig.add_trace(
 
 # Actualizar la configuración de los ejes y diseño
 fig.update_layout(
-    height=500,  
+    height=450,  
     width=1400  
 )
 # Título y descripción
