@@ -7,36 +7,6 @@ import pytz
 from plotly.subplots import make_subplots
 
 st.title("Interacciones de acuerdo al momento de interacción")
-st.write("Los momentos con mayor cantidad de interacciones fueron:")
-# Crear dos columnas
-col1, col2 = st.columns(2)
-
-# Cuadro 1
-with col1:
-    st.markdown("""
-        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
-            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Domingo en la noche</h2>
-            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
-                Campaña Completa.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
-
-# Cuadro 2
-with col2:
-    st.markdown("""
-        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
-            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Miércoles en la campaña</h2>
-            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
-                Últimos 10 Días.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
-
-
-st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
-
-
 
 def plot_template_plotly(fig, suptitle="Este es el título principal",
                          title="Esta es una descripción general del gráfico",
@@ -208,8 +178,8 @@ plot_template_plotly(
     fig,
     suptitle='Promedio de Interacciones',
     title='Comparación de las Interacciones Promedio a lo largo de los Días de la Semana.',
-    suptitle_x=0.41, suptitle_y=0.9,
-    title_x=0.04, title_y=1.1
+    suptitle_x=0.268, suptitle_y=0.9,
+    title_x=0.02, title_y=1.1
 )
 
 st.plotly_chart(fig)
@@ -244,8 +214,8 @@ plot_template_plotly(
     fig2,
     suptitle='Promedio de Interacciones',
     title='Promedio de Interacciones por Periodo del Día',
-    suptitle_x=0.42, suptitle_y=0.9,
-    title_x=0.053, title_y=1.1
+    suptitle_x=0.275, suptitle_y=0.9,
+    title_x=0.026, title_y=1.1
 )
 
 st.plotly_chart(fig2)
@@ -324,7 +294,6 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 ######## Heatmaps
-
 import pickle
 
 # Cargar las tablas usando pickle
@@ -361,6 +330,36 @@ fig2.update_layout(
 
 # Mostrar las gráficas en Streamlit
 st.title("Interacciones promedio dependiendo el horario y el día de publicación")
+st.write("Los momentos con mayor cantidad de interacciones fueron:")
+# Crear dos columnas
+col1, col2 = st.columns(2)
+
+# Cuadro 1
+with col1:
+    st.markdown("""
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
+            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Domingo en la noche</h2>
+            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
+                Campaña Completa.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+# Cuadro 2
+with col2:
+    st.markdown("""
+        <div style="background-color: #00274D; padding: 25px; border-radius: 10px; border: 3px solid #001F3F; width: 90%; margin: auto;">
+            <h2 style="color: #FFFFFF; text-align: center; font-size: 20px;">Miércoles en la campaña</h2>
+            <p style="color: #D3D3D3; font-size: 14px; text-align: center;">
+                Últimos 10 Días.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+st.markdown("<br><br>", unsafe_allow_html=True)  # Dos saltos de línea
+
+
 st.write("En las siguientes gráficas se puede comparar el cambio en número de interacciones dependiendo el momento del día y el día de la semana. En este caso se puede ver una alza de interacciones a la mitad de la semana el día miércoles, esto es debido al cierre de campañas que generó una parrticipación más activa en redes sociales.")
 
 # Mostrar las dos gráficas de calor en Streamlit en secciones separadas
