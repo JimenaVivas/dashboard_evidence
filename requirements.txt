@@ -7,4 +7,5 @@ plotly
 wordcloud
 spacy
 gensim
-scipy==1.10.1
+scipy>=1.10.0
+from scipy.linalg import triu
