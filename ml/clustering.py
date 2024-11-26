@@ -129,7 +129,7 @@ sentiment_colors = ['red', 'gray', 'green']
 fig, ax = plt.subplots(figsize=(9, 4.5))  # Reducción al 75% del tamaño original
 sentiment_proportions.rename(index=cluster_labels_mapping).plot(kind='bar', stacked=True, color=sentiment_colors, ax=ax)
 
-ax.set_title("Proporción de Sentimientos por Cluster", fontsize=16)
+ax.set_title("Proporción de Sentimientos por Cluster (Campaña Completa)", fontsize=16)
 ax.set_xlabel("Clusters", fontsize=12)
 ax.set_ylabel("Proportion", fontsize=12)
 ax.set_xticklabels(cluster_labels_mapping.values(), rotation=0)
