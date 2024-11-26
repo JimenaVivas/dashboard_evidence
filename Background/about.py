@@ -17,7 +17,7 @@ st.markdown(
 team_members = [
     {"name": "Raymundo Aarón Toledo González", "image": "images/Ray.jpg", "text": "IIS"},
     {"name": "Miguel Ponce de León", "image": "images/Mike.jpg", "text": "LAF"},
-    {"name": "Jimena Vivas Hernández", "image": "images/io.png", "text": "IMD"},
+    {"name": "Jimena Vivas Hernández", "image": "images/io.jpg", "text": "IMD"},
     {"name": "Daniel Borja Farfán", "image": "images/Borja.jpg", "text": "LEM"},
     {"name": "José María Juárez Villar", "image": "images/Chema.jpg", "text": "IBT"},
 ]
