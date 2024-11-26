@@ -142,7 +142,7 @@ st.pyplot(fig)
 ############### Tercer Sentiment Proportion (Se anexa como imagen porque su cálculo ralentizaba mucho la página)
 st.header("Proporción de Sentimientos por Cluster (Sample Testing)")
 # Cargar y mostrar la imagen
-image = Image.open('images\sentpro.jpg')
+image = Image.open('images/sentpro.jpg')
 # Mostrar la imagen en Streamlit
 st.image(image, use_container_width=True)
 
