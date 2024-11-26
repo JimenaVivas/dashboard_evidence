@@ -277,7 +277,7 @@ filtered_platform_data['week_day'] = filtered_platform_data['datetime'].dt.day_n
 last_10_days = filtered_platform_data[filtered_platform_data['datetime'] >= filtered_platform_data['datetime'].max() - pd.Timedelta(days=10)]
 
 # Título de la sección
-st.write("### Interacciones Promedio por Candidato por Día de la Semana")
+st.write("### Interacciones Promedio por Candidato por Día de la Semana (Plataforma Seleccionada)")
 
 # Preparar los datos agrupados y ordenados
 full_period = filtered_platform_data.groupby(['week_day', 'candidate_name'])['num_interaction'].mean().reset_index()

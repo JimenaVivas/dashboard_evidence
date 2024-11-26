@@ -56,6 +56,11 @@ else:
         title="Análisis de Sentimientos",
     )
 
+    clust = st.Page(
+        "ml/clustering.py",
+        title="Clustering",
+    )
+
     about = st.Page(
         "Background/about.py",
         title="Sobre Nosotros",
@@ -69,7 +74,7 @@ else:
     # --- Navegación ---
     intro_pages = [intro, facts]
     eda_pages = [statistics, interactive_charts]
-    ml_pages = [ml]
+    ml_pages = [ml, clust]
     about_pages = [about, cr]
 
     page_dict = {

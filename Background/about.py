@@ -19,7 +19,7 @@ team_members = [
     {"name": "Miguel Ponce de León", "image": "images/Mike.jpg", "text": "LAF"},
     {"name": "Jimena Vivas Hernández", "image": "images/io.png", "text": "IMD"},
     {"name": "Daniel Borja Farfán", "image": "images/Borja.jpg", "text": "LEM"},
-    {"name": "José María Juárez Villar", "image": "images/Chema.png", "text": "IBT"},
+    {"name": "José María Juárez Villar", "image": "images/Chema.jpg", "text": "IBT"},
 ]
 
 # Crear columnas para cada miembro del equipo
