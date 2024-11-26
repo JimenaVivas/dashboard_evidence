@@ -24,7 +24,7 @@ if st.session_state.main_page:
     st.write("---")
 
     # --- Botón para ir a Hipótesis ---
-    if st.button("Ir a Hipótesis"):
+    if st.button("Ir a Introducción"):
         st.session_state.main_page = False  # Cambiar el estado
         st._set_query_params(page="hipotesis")  # Actualizar los parámetros
         # No es necesario hacer "rerun", Streamlit detectará el cambio automáticamente.

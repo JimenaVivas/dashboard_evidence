@@ -28,6 +28,7 @@ def plot_template_plotly(fig, suptitle, title, suptitle_x=0.665, suptitle_y=1, t
         font=dict(size=14, color='#4A4A4A', family='Arial')
     )
 
+
 # Configuración de colores
 candidate_colors = {
     'Claudia Sheinbaum': 'darkred',
@@ -132,7 +133,7 @@ def create_line_chart(data, group_column, value_column, name, color):
 fig = go.Figure()
 
 if "Seleccionar otras fechas" in time_option:
-    start_date, end_date = get_custom_date_range()
+    start_date, end_date = get_custom_date_range(filtered_data)
     start_date = pd.to_datetime(start_date).tz_localize('America/Mexico_City')
     end_date = pd.to_datetime(end_date).tz_localize('America/Mexico_City')
 

@@ -15,8 +15,8 @@ st.markdown(
 
 # Definir las imágenes, los miembros del equipo y carrera
 team_members = [
-    {"name": "Raymundo Aarón Toledo González", "image": "images/Ray.png", "text": "IIS"},
-    {"name": "Miguel Ponce de León", "image": "images/Mike.png", "text": "LAF"},
+    {"name": "Raymundo Aarón Toledo González", "image": "images/Ray.jpg", "text": "IIS"},
+    {"name": "Miguel Ponce de León", "image": "images/Mike.jpg", "text": "LAF"},
     {"name": "Jimena Vivas Hernández", "image": "images/io.png", "text": "IMD"},
     {"name": "Daniel Borja Farfán", "image": "images/Borja.jpg", "text": "LEM"},
     {"name": "José María Juárez Villar", "image": "images/Chema.png", "text": "IBT"},

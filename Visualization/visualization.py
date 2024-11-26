@@ -1,10 +1,11 @@
 from EDA.eda import plot_template_plotly
 import streamlit as st
 import pickle
-import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 from PIL import Image  
+from wordcloud import WordCloud
+
 st.title("Comparación de Interacciones Promedio por Publicación por Usuario")
 st.write("### Temas más recurrentes")
 st.write("Se observa a continuación el cambio de temas más recurrentes en la campaña y cómo cambio su frecuencia.")
@@ -15,56 +16,6 @@ st.write("Se observa a continuación el cambio de temas más recurrentes en la c
 image = Image.open('images/Topics.png')
 # Mostrar la imagen en Streamlit
 st.image(image, use_container_width=True)
-
-
-####### Interactions by most popular users
-st.write("### Interacciones en los diez usuarios más populares")
-st.write("* En este caso los usuarios que se muestran son aquellos con mayor número de interraciones en los 10 días previos a la elección.")
-with open('EDA/interactions_data.pkl', 'rb') as f:
-    merged_df = pickle.load(f)    # Mostrar una vista previa del DataFrame
-
-    # Crear la gráfica con Plotly
-    fig = go.Figure()
-
-    # Agregar barras para los últimos 10 días
-    fig.add_trace(go.Bar(
-        x=merged_df['username'],
-        y=merged_df['avg_interaction_recent'],
-        name='Últimos 10 días',
-        marker_color='#1b9e77'
-    ))
-
-    # Agregar barras para toda la campaña
-    fig.add_trace(go.Bar(
-        x=merged_df['username'],
-        y=merged_df['avg_interaction_all'],
-        name='Campaña completa',
-        marker_color='lightsteelblue'
-    ))
-
-    # Configuración del diseño
-    fig.update_layout(
-        title={
-            'text': "Interactions per Post by User",
-            'y': 0.9,
-            'x': 0.5,
-            'xanchor': 'center',
-            'yanchor': 'top'
-        },
-        barmode='group',  # Agrupar barras
-        legend_title="Periodo de Tiempo",
-        template="plotly_white"  # Tema de la gráfica
-    )
-    plot_template_plotly(
-    fig,
-    suptitle='Promedio de Interacciones',
-    title='Por Publicación de los 10 Usuarios Más Populares',
-    suptitle_x=0.58, suptitle_y=0.9,
-    title_x=0.52, title_y=1.1)
-
-    # Mostrar la gráfica en Streamlit
-    st.plotly_chart(fig)
-
 
 ##################### Posts por usuario
 st.write("### Diferencia en la actividad de los diez usuarios más populares")
