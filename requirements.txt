@@ -7,4 +7,3 @@ plotly
 wordcloud
 spacy
 gensim
-from scipy import triu
