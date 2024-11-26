@@ -399,6 +399,8 @@ fig.update_layout(
     width=1400  
 )
 # Título y descripción
+st.write("### Interacciones según momento de publicación en Twitter")
+
 st.write("Los momentos con mayor cantidad de interacciones fueron:")
 
 # Mostrar las gráficas en columnas
