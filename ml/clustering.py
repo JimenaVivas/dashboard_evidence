@@ -18,44 +18,24 @@ import warnings
 warnings.filterwarnings('ignore')
 
 st.header("Clustering")
+merged_df = pd.read_csv('ml/Complete_Data.csv')
 
-zip_file_path = 'ml/clust.zip'
-extract_folder = 'ml/extracted_files'
-
-# Crear la carpeta de extracción si no existe
-if not os.path.exists(extract_folder):
-    os.makedirs(extract_folder)
-
-# Extraer el archivo ZIP
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    zip_ref.extractall(extract_folder)
-
-
-# Cargar los archivos después de la extracción
-sentiment_data_path = os.path.join(extract_folder, 'Sentiment_data.csv')
-complete_data_path = os.path.join(extract_folder, 'Complete_data.csv')
-merged_df_path = os.path.join(extract_folder, 'merged_df.pkl')
-
-# Cargar el DataFrame correspondiente
-sentiment_df = pd.read_csv(sentiment_data_path)
-complete_df = pd.read_csv(complete_data_path)
-
-# Cargar el archivo pickle (merged_df)
-with open(merged_df_path, 'rb') as file:
-    merged_df = pd.read_pickle(file)
-
-# A partir de aquí continúa con el código original, utilizando 'merged_df', 'sentiment_df', etc.
-st.header("Clustering")
+# Ensure datetime column is in datetime format
 merged_df['datetime'] = pd.to_datetime(merged_df['datetime'], errors='coerce')
+
+# Ensure there are no rows with NaT values in the 'datetime' column
 merged_df = merged_df.dropna(subset=['datetime'])
 
-# Definir el rango de fechas
+# Define the date range
 begin_date = '2024-03-01 00:00:00'
 end_date = '2024-06-02 00:00:00'
 merged_df = merged_df.loc[(merged_df['datetime'] >= begin_date) & (merged_df['datetime'] <= end_date)]
 
+# Calculate the start date of the last 10-day period in the range
 last_ten_days_start = pd.to_datetime(end_date) - pd.Timedelta(days=10)
-merged_df2 = merged_df.loc[merged_df['datetime'] >= last_ten_days_start]
+
+# Filter to only include data from the last 10 days
+merged_df2= merged_df.loc[merged_df['datetime'] >= last_ten_days_start]
 
 # Ruta del archivo
 file_path = "ml/merged_df.pkl"

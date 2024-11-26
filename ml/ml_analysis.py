@@ -3,8 +3,6 @@ import pandas as pd
 import plotly.express as px
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
-import zipfile
-import os
 
 
 # Configurar título de la aplicación
@@ -12,34 +10,19 @@ st.title("Análisis de Sentimientos por Candidato")
 st.write("Visualiza la distribución de sentimientos y predice el sentimiento de una frase.")
 
 # Cargar los datos directamente desde los archivos especificados
-zip_file_path = 'ml/clust.zip'
-extract_folder = 'ml/extracted_files'
-
-# Crear la carpeta de extracción si no existe
-if not os.path.exists(extract_folder):
-    os.makedirs(extract_folder)
-
-# Extraer el archivo ZIP
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    zip_ref.extractall(extract_folder)
-
-
-# Cargar los archivos después de la extracción
-sentiment_data_path = os.path.join(extract_folder, 'Sentiment_data.csv')
+complete_data = "ml/Sentiment_data.csv"
 training_data_path = "ml/x-senti-labelled_and_lematized.csv"
 svm_model_path = "ml/svm_model_updated.sav"
 
 # Cargar datos completos
-complete_data_path = os.path.join(extract_folder, 'Complete_data.csv')
-df = pd.read_csv(complete_data_path)
-
+df = pd.read_csv(complete_data)
 df_complete = df.dropna(subset=['lematiz_tweet'])
 
 # Visualizar la distribución de sentimientos por candidato
 sentiment_per_candidate = df_complete.groupby(['candidate_name', 'Sentiment'])['Sentiment'].count().reset_index(name='count')
 color_scale = {'negative': 'red', 'neutral': 'gray', 'positive': 'green'}
 
-st.subheader("Distribución de Sentimientos por Candidato")
+st.subheader("Distribución de Sentimientos por Candidato (Campaña Completa)")
 fig_bar = px.bar(
     sentiment_per_candidate, 
     x='candidate_name', 
